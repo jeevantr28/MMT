@@ -14,7 +14,9 @@ const Flights = () => {
       try {
         setError('');
         const queryParams = new URLSearchParams(location.search);
-        const res = await api.get(`/flights?${queryParams.toString()}`);
+        const queryString = queryParams.toString();
+        const path = queryString ? `/flights?${queryString}` : '/flights';
+        const res = await api.get(path);
         setFlights(res.data);
       } catch (err) {
         console.error(err);
@@ -27,54 +29,46 @@ const Flights = () => {
     fetchFlights();
   }, [location.search]);
 
+  const queryParams = new URLSearchParams(location.search);
+  const queryString = queryParams.toString();
+  const title = queryString ? 'Available Flights' : 'All Available Flights';
+
   return (
-    <div>
-      {/* Travel Banner */}
+    <div className="container" style={{ padding: '40px 20px' }}>
       <div style={{
-        backgroundImage: 'url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        padding: '60px 20px',
-        textAlign: 'center',
-        color: 'white',
-        position: 'relative'
+        background: 'linear-gradient(135deg, #0b184c, #102a75 50%, #15399d)',
+        borderRadius: '24px',
+        padding: '32px 28px',
+        color: '#eef4ff',
+        marginBottom: '32px',
+        boxShadow: '0 24px 60px rgba(8, 32, 80, 0.28)'
       }}>
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'rgba(0,0,0,0.5)'
-        }}></div>
-        <div style={{ position: 'relative', zIndex: 10 }}>
-          <h1 style={{ fontSize: '36px', fontWeight: '700', marginBottom: '10px' }}>Available Flights</h1>
-          <p style={{ fontSize: '18px', opacity: 0.9 }}>"Adventure is worthwhile in itself." – Amelia Earhart</p>
-        </div>
+        <h2 style={{ fontSize: '36px', marginBottom: '12px', letterSpacing: '0.4px' }}>{title}</h2>
+        <p style={{ fontSize: '16px', opacity: 0.9, maxWidth: '700px' }}>Browse sleek flight options, compare prices and departure times, then book the best seat for your journey.</p>
       </div>
 
-      <div className="container" style={{ padding: '40px 20px', marginTop: '-20px', position: 'relative', zIndex: 20 }}>
-      
       {loading ? (
-        <p>Loading flights...</p>
+        <p style={{ fontSize: '18px' }}>Loading flights...</p>
       ) : error ? (
         <div className="error-msg">{error}</div>
       ) : flights.length > 0 ? (
-        <div>
-          {flights.map(flight => (
-            <FlightCard key={flight._id} flight={flight} />
+        <div style={{ display: 'grid', gap: '18px' }}>
+          {flights.map((flight, index) => (
+            <FlightCard key={flight._id} flight={flight} index={index} />
           ))}
         </div>
       ) : (
         <div style={{
           textAlign: 'center',
           padding: '40px',
-          background: 'var(--white)',
-          borderRadius: 'var(--radius-lg)',
+          background: 'linear-gradient(135deg, #ffffff, #f4f5f7)',
+          borderRadius: '20px',
           boxShadow: 'var(--shadow-sm)'
         }}>
-          <h3 style={{ fontSize: '20px', color: 'var(--text-light)', marginBottom: '16px' }}>No flights found for this route or date.</h3>
-          <p style={{ color: 'var(--text-light)' }}>Please try adjusting your search criteria.</p>
+          <h3 style={{ fontSize: '22px', color: 'var(--text-dark)', marginBottom: '16px' }}>{queryString ? 'No flights found for this route or date.' : 'No flights available at the moment.'}</h3>
+          <p style={{ color: 'var(--text-light)' }}>{queryString ? 'Please try adjusting your search criteria.' : 'Please try again later.'}</p>
         </div>
       )}
-      </div>
     </div>
   );
 };

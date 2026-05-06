@@ -5,8 +5,6 @@ const bookingSchema = new mongoose.Schema({
   flightId: { type: mongoose.Schema.Types.ObjectId, ref: 'Flight', required: true },
   passengerName: { type: String, required: true },
   passengerAge: { type: Number, required: true },
-  passengerEmail: { type: String, required: true },
-  passengerPhone: { type: String, required: true },
   seatNumber: { type: String, required: true }
 }, { timestamps: true });
 

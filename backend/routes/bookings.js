@@ -6,7 +6,12 @@ const auth = require('../middleware/auth');
 
 router.post('/', auth, async (req, res) => {
   try {
-    const { flightId, passengerName, passengerAge, passengerEmail, passengerPhone, seatNumber } = req.body;
+    const { flightId, passengerName, passengerAge, seatNumber } = req.body;
+
+    // Validate input
+    if (!seatNumber) {
+      return res.status(400).json({ message: 'Seat number is required' });
+    }
 
     // Check if flight exists
     const flight = await Flight.findById(flightId);
@@ -14,13 +19,20 @@ router.post('/', auth, async (req, res) => {
       return res.status(404).json({ message: 'Flight not found' });
     }
 
+    // Check if seat is already booked
+    if (flight.bookedSeats.includes(seatNumber)) {
+      return res.status(400).json({ message: 'Seat already booked' });
+    }
+
+    // Add seat to bookedSeats
+    flight.bookedSeats.push(seatNumber);
+    await flight.save();
+
     const newBooking = new Booking({
       userId: req.user.id,
       flightId,
       passengerName,
       passengerAge,
-      passengerEmail,
-      passengerPhone,
       seatNumber
     });
 

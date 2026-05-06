@@ -22,158 +22,73 @@ const Home = () => {
 
   return (
     <div>
-
       {/* Hero Section */}
       <div style={{
-        backgroundImage: 'url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        padding: '100px 20px',
+        background: 'linear-gradient(135deg, #051a4a, #0b2b78)',
+        padding: '80px 20px',
         textAlign: 'center',
-        color: 'white',
-        position: 'relative',
-        zIndex: 1
+        color: '#eef4ff'
       }}>
-        {/* Dark Overlay */}
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'rgba(0,0,0,0.5)'
-        }}></div>
-
-        <div style={{ position: 'relative' }}>
-          <h1 style={{ fontSize: '48px', fontWeight: '700', marginBottom: '16px' }}>
-            Explore The World 🌍
-          </h1>
-          <p style={{ fontSize: '18px', opacity: 0.9 }}>
-            Discover new places, create unforgettable memories, and travel without limits.
-          </p>
-        </div>
+        <h1 style={{ fontSize: '42px', fontWeight: '700', marginBottom: '16px' }}>Book Your Flight Tickets</h1>
+        <p style={{ fontSize: '18px', opacity: 0.95 }}>Fly anywhere in the world with the best prices.</p>
       </div>
 
-      {/* Search Box (FIXED) */}
-      <div className="container" style={{
-        marginTop: '-60px',
-        position: 'relative',
-        zIndex: 10   // 🔥 This fixes the overlap issue
-      }}>
+      {/* Search Box */}
+      <div className="container" style={{ marginTop: '-40px' }}>
         <form onSubmit={handleSearch} style={{
-          background: 'var(--white)',
+          background: '#081d4e',
           padding: '30px',
           borderRadius: 'var(--radius-lg)',
-          boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
+          boxShadow: '0 16px 40px rgba(0, 0, 0, 0.18)',
           display: 'flex',
           gap: '20px',
           alignItems: 'flex-end',
           flexWrap: 'wrap'
         }}>
           <div style={{ flex: 1, minWidth: '200px' }}>
-            <label className="form-label">From</label>
-            <input
-              type="text"
+            <label className="form-label" style={{ color: '#cbd5ff' }}>From</label>
+            <input 
+              type="text" 
               name="from"
-              placeholder="e.g. Delhi or New York"
+              placeholder="e.g. Delhi"
               value={searchParams.from}
               onChange={handleChange}
               className="form-input"
-              list="cities-list"
+              style={{ background: '#0f2a6b', color: '#eef4ff', borderColor: '#2c4e97' }}
               required
             />
           </div>
-
           <div style={{ flex: 1, minWidth: '200px' }}>
-            <label className="form-label">To</label>
-            <input
-              type="text"
+            <label className="form-label" style={{ color: '#cbd5ff' }}>To</label>
+            <input 
+              type="text" 
               name="to"
-              placeholder="e.g. Mumbai or London"
+              placeholder="e.g. Mumbai"
               value={searchParams.to}
               onChange={handleChange}
               className="form-input"
-              list="cities-list"
+              style={{ background: '#0f2a6b', color: '#eef4ff', borderColor: '#2c4e97' }}
               required
             />
           </div>
-
-          <datalist id="cities-list">
-            <option value="Delhi" />
-            <option value="Mumbai" />
-            <option value="Bangalore" />
-            <option value="Chennai" />
-            <option value="Goa" />
-            <option value="Hyderabad" />
-            <option value="New York" />
-            <option value="London" />
-            <option value="Dubai" />
-            <option value="Singapore" />
-            <option value="Paris" />
-            <option value="Tokyo" />
-          </datalist>
-
           <div style={{ flex: 1, minWidth: '200px' }}>
-            <label className="form-label">Departure Date</label>
-            <input
-              type="date"
+            <label className="form-label" style={{ color: '#cbd5ff' }}>Departure Date</label>
+            <input 
+              type="date" 
               name="date"
               value={searchParams.date}
               onChange={handleChange}
               className="form-input"
+              style={{ background: '#0f2a6b', color: '#eef4ff', borderColor: '#2c4e97' }}
               required
             />
           </div>
-
-          <button type="submit" className="btn-primary" style={{
-            width: 'auto',
-            padding: '12px 32px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px'
-          }}>
+          <button type="submit" className="btn-primary" style={{ width: 'auto', padding: '12px 32px', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Search size={20} />
             Search
           </button>
         </form>
       </div>
-
-      {/* Travel Inspiration Section */}
-      <div style={{
-        background: '#f5f7fa',
-        padding: '60px 20px',
-        textAlign: 'center'
-      }}>
-        <h2 style={{ fontSize: '30px', marginBottom: '20px' }}>
-          Why Travel? 🌄
-        </h2>
-        <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '18px', color: '#555' }}>
-          Travel opens your heart, broadens your mind, and fills your life with stories.
-          Whether it's mountains, beaches, or cities — every journey transforms you.
-        </p>
-      </div>
-
-      {/* Call to Action Banner */}
-      <div style={{
-        backgroundImage: 'url("https://images.unsplash.com/photo-1493558103817-58b2924bce98")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        padding: '80px 20px',
-        textAlign: 'center',
-        color: 'white',
-        position: 'relative'
-      }}>
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'rgba(0,0,0,0.5)'
-        }}></div>
-
-        <div style={{ position: 'relative' }}>
-          <h2 style={{ fontSize: '36px', marginBottom: '10px' }}>
-            Start Your Journey Today 🚀
-          </h2>
-          <p>Find the best deals and travel the world your way.</p>
-        </div>
-      </div>
-
     </div>
   );
 };
