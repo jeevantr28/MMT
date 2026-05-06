@@ -22,24 +22,46 @@ const Home = () => {
 
   return (
     <div>
+
       {/* Hero Section */}
       <div style={{
-        background: 'linear-gradient(to right, #008cff, #005bb5)',
-        padding: '80px 20px',
+        backgroundImage: 'url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        padding: '100px 20px',
         textAlign: 'center',
-        color: 'white'
+        color: 'white',
+        position: 'relative',
+        zIndex: 1
       }}>
-        <h1 style={{ fontSize: '42px', fontWeight: '700', marginBottom: '16px' }}>Book Your Flight Tickets</h1>
-        <p style={{ fontSize: '18px', opacity: 0.9 }}>Fly anywhere in the world with the best prices.</p>
+        {/* Dark Overlay */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'rgba(0,0,0,0.5)'
+        }}></div>
+
+        <div style={{ position: 'relative' }}>
+          <h1 style={{ fontSize: '48px', fontWeight: '700', marginBottom: '16px' }}>
+            Explore The World 🌍
+          </h1>
+          <p style={{ fontSize: '18px', opacity: 0.9 }}>
+            Discover new places, create unforgettable memories, and travel without limits.
+          </p>
+        </div>
       </div>
 
-      {/* Search Box */}
-      <div className="container" style={{ marginTop: '-40px' }}>
+      {/* Search Box (FIXED) */}
+      <div className="container" style={{
+        marginTop: '-60px',
+        position: 'relative',
+        zIndex: 10   // 🔥 This fixes the overlap issue
+      }}>
         <form onSubmit={handleSearch} style={{
           background: 'var(--white)',
           padding: '30px',
           borderRadius: 'var(--radius-lg)',
-          boxShadow: 'var(--shadow-lg)',
+          boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
           display: 'flex',
           gap: '20px',
           alignItems: 'flex-end',
@@ -47,32 +69,46 @@ const Home = () => {
         }}>
           <div style={{ flex: 1, minWidth: '200px' }}>
             <label className="form-label">From</label>
-            <input 
-              type="text" 
+            <select
               name="from"
-              placeholder="e.g. Delhi"
               value={searchParams.from}
               onChange={handleChange}
               className="form-input"
               required
-            />
+            >
+              <option value="" disabled>Select origin</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Bangalore">Bangalore</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Goa">Goa</option>
+              <option value="Hyderabad">Hyderabad</option>
+            </select>
           </div>
+
           <div style={{ flex: 1, minWidth: '200px' }}>
             <label className="form-label">To</label>
-            <input 
-              type="text" 
+            <select
               name="to"
-              placeholder="e.g. Mumbai"
               value={searchParams.to}
               onChange={handleChange}
               className="form-input"
               required
-            />
+            >
+              <option value="" disabled>Select destination</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Bangalore">Bangalore</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Goa">Goa</option>
+              <option value="Hyderabad">Hyderabad</option>
+            </select>
           </div>
+
           <div style={{ flex: 1, minWidth: '200px' }}>
             <label className="form-label">Departure Date</label>
-            <input 
-              type="date" 
+            <input
+              type="date"
               name="date"
               value={searchParams.date}
               onChange={handleChange}
@@ -80,12 +116,59 @@ const Home = () => {
               required
             />
           </div>
-          <button type="submit" className="btn-primary" style={{ width: 'auto', padding: '12px 32px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+
+          <button type="submit" className="btn-primary" style={{
+            width: 'auto',
+            padding: '12px 32px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px'
+          }}>
             <Search size={20} />
             Search
           </button>
         </form>
       </div>
+
+      {/* Travel Inspiration Section */}
+      <div style={{
+        background: '#f5f7fa',
+        padding: '60px 20px',
+        textAlign: 'center'
+      }}>
+        <h2 style={{ fontSize: '30px', marginBottom: '20px' }}>
+          Why Travel? 🌄
+        </h2>
+        <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '18px', color: '#555' }}>
+          Travel opens your heart, broadens your mind, and fills your life with stories.
+          Whether it's mountains, beaches, or cities — every journey transforms you.
+        </p>
+      </div>
+
+      {/* Call to Action Banner */}
+      <div style={{
+        backgroundImage: 'url("https://images.unsplash.com/photo-1493558103817-58b2924bce98")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        padding: '80px 20px',
+        textAlign: 'center',
+        color: 'white',
+        position: 'relative'
+      }}>
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'rgba(0,0,0,0.5)'
+        }}></div>
+
+        <div style={{ position: 'relative' }}>
+          <h2 style={{ fontSize: '36px', marginBottom: '10px' }}>
+            Start Your Journey Today 🚀
+          </h2>
+          <p>Find the best deals and travel the world your way.</p>
+        </div>
+      </div>
+
     </div>
   );
 };
