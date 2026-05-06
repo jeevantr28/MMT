@@ -28,8 +28,29 @@ const Flights = () => {
   }, [location.search]);
 
   return (
-    <div className="container" style={{ padding: '40px 20px' }}>
-      <h2 style={{ fontSize: '28px', marginBottom: '24px' }}>Available Flights</h2>
+    <div>
+      {/* Travel Banner */}
+      <div style={{
+        backgroundImage: 'url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        padding: '60px 20px',
+        textAlign: 'center',
+        color: 'white',
+        position: 'relative'
+      }}>
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'rgba(0,0,0,0.5)'
+        }}></div>
+        <div style={{ position: 'relative', zIndex: 10 }}>
+          <h1 style={{ fontSize: '36px', fontWeight: '700', marginBottom: '10px' }}>Available Flights</h1>
+          <p style={{ fontSize: '18px', opacity: 0.9 }}>"Adventure is worthwhile in itself." – Amelia Earhart</p>
+        </div>
+      </div>
+
+      <div className="container" style={{ padding: '40px 20px', marginTop: '-20px', position: 'relative', zIndex: 20 }}>
       
       {loading ? (
         <p>Loading flights...</p>
@@ -53,6 +74,7 @@ const Flights = () => {
           <p style={{ color: 'var(--text-light)' }}>Please try adjusting your search criteria.</p>
         </div>
       )}
+      </div>
     </div>
   );
 };

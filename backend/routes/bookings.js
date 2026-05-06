@@ -6,7 +6,7 @@ const auth = require('../middleware/auth');
 
 router.post('/', auth, async (req, res) => {
   try {
-    const { flightId, passengerName, passengerAge } = req.body;
+    const { flightId, passengerName, passengerAge, passengerEmail, passengerPhone, seatNumber } = req.body;
 
     // Check if flight exists
     const flight = await Flight.findById(flightId);
@@ -18,7 +18,10 @@ router.post('/', auth, async (req, res) => {
       userId: req.user.id,
       flightId,
       passengerName,
-      passengerAge
+      passengerAge,
+      passengerEmail,
+      passengerPhone,
+      seatNumber
     });
 
     const booking = await newBooking.save();
