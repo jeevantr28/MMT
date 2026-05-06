@@ -69,41 +69,46 @@ const Home = () => {
         }}>
           <div style={{ flex: 1, minWidth: '200px' }}>
             <label className="form-label">From</label>
-            <select
+            <input
+              type="text"
               name="from"
+              placeholder="e.g. Delhi or New York"
               value={searchParams.from}
               onChange={handleChange}
               className="form-input"
+              list="cities-list"
               required
-            >
-              <option value="" disabled>Select origin</option>
-              <option value="Delhi">Delhi</option>
-              <option value="Mumbai">Mumbai</option>
-              <option value="Bangalore">Bangalore</option>
-              <option value="Chennai">Chennai</option>
-              <option value="Goa">Goa</option>
-              <option value="Hyderabad">Hyderabad</option>
-            </select>
+            />
           </div>
 
           <div style={{ flex: 1, minWidth: '200px' }}>
             <label className="form-label">To</label>
-            <select
+            <input
+              type="text"
               name="to"
+              placeholder="e.g. Mumbai or London"
               value={searchParams.to}
               onChange={handleChange}
               className="form-input"
+              list="cities-list"
               required
-            >
-              <option value="" disabled>Select destination</option>
-              <option value="Delhi">Delhi</option>
-              <option value="Mumbai">Mumbai</option>
-              <option value="Bangalore">Bangalore</option>
-              <option value="Chennai">Chennai</option>
-              <option value="Goa">Goa</option>
-              <option value="Hyderabad">Hyderabad</option>
-            </select>
+            />
           </div>
+
+          <datalist id="cities-list">
+            <option value="Delhi" />
+            <option value="Mumbai" />
+            <option value="Bangalore" />
+            <option value="Chennai" />
+            <option value="Goa" />
+            <option value="Hyderabad" />
+            <option value="New York" />
+            <option value="London" />
+            <option value="Dubai" />
+            <option value="Singapore" />
+            <option value="Paris" />
+            <option value="Tokyo" />
+          </datalist>
 
           <div style={{ flex: 1, minWidth: '200px' }}>
             <label className="form-label">Departure Date</label>

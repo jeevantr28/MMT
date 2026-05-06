@@ -2,68 +2,72 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const Flight = require('./models/Flight');
 
-const cities = ['Delhi', 'Mumbai', 'Bangalore', 'Chennai', 'Goa', 'Hyderabad'];
-const airlines = ['IndiGo', 'Air India', 'Vistara', 'SpiceJet', 'Go First', 'AirAsia India'];
+const seedFlights = [
+  {
+    airline: 'IndiGo',
+    from: 'Delhi',
+    to: 'Mumbai',
+    date: '2026-05-10',
+    price: 4500,
+    departureTime: '06:00 AM',
+    arrivalTime: '08:15 AM'
+  },
+  {
+    airline: 'Air India',
+    from: 'Delhi',
+    to: 'Bangalore',
+    date: '2026-05-10',
+    price: 5500,
+    departureTime: '07:30 AM',
+    arrivalTime: '10:20 AM'
+  },
+  {
+    airline: 'Vistara',
+    from: 'Mumbai',
+    to: 'Delhi',
+    date: '2026-05-11',
+    price: 6000,
+    departureTime: '09:00 AM',
+    arrivalTime: '11:15 AM'
+  },
+  {
+    airline: 'SpiceJet',
+    from: 'Bangalore',
+    to: 'Chennai',
+    date: '2026-05-11',
+    price: 2500,
+    departureTime: '14:00 PM',
+    arrivalTime: '15:10 PM'
+  },
+  {
+    airline: 'Go First',
+    from: 'Delhi',
+    to: 'Goa',
+    date: '2026-05-15',
+    price: 7000,
+    departureTime: '11:00 AM',
+    arrivalTime: '13:40 PM'
+  },
+  {
+    airline: 'IndiGo',
+    from: 'Mumbai',
+    to: 'Goa',
+    date: '2026-05-15',
+    price: 3500,
+    departureTime: '16:00 PM',
+    arrivalTime: '17:20 PM'
+  },
+  {
+    airline: 'AirAsia India',
+    from: 'Chennai',
+    to: 'Hyderabad',
+    date: '2026-05-16',
 
-// Helper to get random item from array
-const getRandomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
-
-// Helper to pad numbers
-const pad = (num) => num.toString().padStart(2, '0');
-
-// Generate flights for the next 30 days
-const generateFlights = () => {
-  const flights = [];
-  const today = new Date();
-
-  for (let i = 0; i < 200; i++) {
-    // Random date within next 30 days
-    const flightDate = new Date(today);
-    flightDate.setDate(today.getDate() + Math.floor(Math.random() * 30));
-    const dateString = `${flightDate.getFullYear()}-${pad(flightDate.getMonth() + 1)}-${pad(flightDate.getDate())}`;
-
-    // Random from and to (ensure they are different)
-    let from = getRandomItem(cities);
-    let to = getRandomItem(cities);
-    while (from === to) {
-      to = getRandomItem(cities);
-    }
-
-    // Random times
-    const departHour = Math.floor(Math.random() * 24);
-    const departMin = Math.floor(Math.random() * 60);
-    const flightDurationHours = Math.floor(Math.random() * 3) + 1; // 1 to 3 hours
-    const flightDurationMins = Math.floor(Math.random() * 60);
-    
-    let arrivalHour = departHour + flightDurationHours;
-    let arrivalMin = departMin + flightDurationMins;
-    if (arrivalMin >= 60) {
-      arrivalMin -= 60;
-      arrivalHour += 1;
-    }
-    if (arrivalHour >= 24) arrivalHour -= 24;
-
-    const formatTime = (h, m) => {
-      const ampm = h >= 12 ? 'PM' : 'AM';
-      const formattedH = h % 12 === 0 ? 12 : h % 12;
-      return `${pad(formattedH)}:${pad(m)} ${ampm}`;
-    };
-
-    flights.push({
-      airline: getRandomItem(airlines),
-      from,
-      to,
-      date: dateString,
-      price: Math.floor(Math.random() * 8000) + 2000, // 2000 to 9999
-      departureTime: formatTime(departHour, departMin),
-      arrivalTime: formatTime(arrivalHour, arrivalMin)
-    });
+    price: 3000,
+    departureTime: '18:30 PM',
+    arrivalTime: '19:45 PM'
   }
-
-  return flights;
-};
-
-const seedFlights = generateFlights();
+];
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/mmt_clone')
   .then(async () => {
