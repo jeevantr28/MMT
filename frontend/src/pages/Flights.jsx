@@ -6,16 +6,19 @@ import FlightCard from '../components/FlightCard';
 const Flights = () => {
   const [flights, setFlights] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const location = useLocation();
 
   useEffect(() => {
     const fetchFlights = async () => {
       try {
+        setError('');
         const queryParams = new URLSearchParams(location.search);
         const res = await api.get(`/flights?${queryParams.toString()}`);
         setFlights(res.data);
       } catch (err) {
         console.error(err);
+        setError('Failed to fetch flights. Please ensure the backend server is running.');
       } finally {
         setLoading(false);
       }
@@ -30,6 +33,8 @@ const Flights = () => {
       
       {loading ? (
         <p>Loading flights...</p>
+      ) : error ? (
+        <div className="error-msg">{error}</div>
       ) : flights.length > 0 ? (
         <div>
           {flights.map(flight => (

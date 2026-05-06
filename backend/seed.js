@@ -7,7 +7,7 @@ const seedFlights = [
     airline: 'IndiGo',
     from: 'Delhi',
     to: 'Mumbai',
-    date: '2023-12-01',
+    date: '2026-05-10',
     price: 4500,
     departureTime: '06:00 AM',
     arrivalTime: '08:15 AM'
@@ -16,7 +16,7 @@ const seedFlights = [
     airline: 'Air India',
     from: 'Delhi',
     to: 'Bangalore',
-    date: '2023-12-01',
+    date: '2026-05-10',
     price: 5500,
     departureTime: '07:30 AM',
     arrivalTime: '10:20 AM'
@@ -25,7 +25,7 @@ const seedFlights = [
     airline: 'Vistara',
     from: 'Mumbai',
     to: 'Delhi',
-    date: '2023-12-02',
+    date: '2026-05-11',
     price: 6000,
     departureTime: '09:00 AM',
     arrivalTime: '11:15 AM'
@@ -34,7 +34,7 @@ const seedFlights = [
     airline: 'SpiceJet',
     from: 'Bangalore',
     to: 'Chennai',
-    date: '2023-12-02',
+    date: '2026-05-11',
     price: 2500,
     departureTime: '14:00 PM',
     arrivalTime: '15:10 PM'
@@ -43,7 +43,7 @@ const seedFlights = [
     airline: 'Go First',
     from: 'Delhi',
     to: 'Goa',
-    date: '2023-12-05',
+    date: '2026-05-15',
     price: 7000,
     departureTime: '11:00 AM',
     arrivalTime: '13:40 PM'
@@ -52,7 +52,7 @@ const seedFlights = [
     airline: 'IndiGo',
     from: 'Mumbai',
     to: 'Goa',
-    date: '2023-12-05',
+    date: '2026-05-15',
     price: 3500,
     departureTime: '16:00 PM',
     arrivalTime: '17:20 PM'
@@ -61,7 +61,8 @@ const seedFlights = [
     airline: 'AirAsia India',
     from: 'Chennai',
     to: 'Hyderabad',
-    date: '2023-12-06',
+    date: '2026-05-16',
+
     price: 3000,
     departureTime: '18:30 PM',
     arrivalTime: '19:45 PM'
