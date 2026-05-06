@@ -5,7 +5,7 @@ const Flight = require('../models/Flight');
 router.get('/', async (req, res) => {
   try {
     const { from, to, date } = req.query;
-    
+
     // Build query object dynamically based on provided query params
     let query = {};
     if (from) query.from = { $regex: new RegExp(from, 'i') }; // Case-insensitive

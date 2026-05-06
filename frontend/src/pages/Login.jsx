@@ -39,7 +39,7 @@ const Login = () => {
       }}></div>
 
       <div className="container" style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        
+
         <div style={{ textAlign: 'center', color: 'white', marginBottom: '30px' }}>
           <h1 style={{ fontSize: '36px', fontWeight: '700', marginBottom: '10px' }}>Welcome Back, Explorer! ✈️</h1>
           <p style={{ fontSize: '18px', opacity: 0.9 }}>"To travel is to live." – Hans Christian Andersen</p>
@@ -51,23 +51,23 @@ const Login = () => {
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label className="form-label">Email Address</label>
-              <input 
-                type="email" 
+              <input
+                type="email"
                 className="form-input"
                 placeholder="name@example.com"
                 value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
               />
             </div>
             <div className="form-group">
               <label className="form-label">Password</label>
-              <input 
-                type="password" 
+              <input
+                type="password"
                 className="form-input"
                 placeholder="••••••••"
                 value={formData.password}
-                onChange={(e) => setFormData({...formData, password: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 required
               />
             </div>
