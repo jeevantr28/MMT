@@ -7,9 +7,7 @@ const flightSchema = new mongoose.Schema({
   date: { type: String, required: true }, // Store as YYYY-MM-DD
   price: { type: Number, required: true },
   departureTime: { type: String, required: true },
-  arrivalTime: { type: String, required: true },
-  totalSeats: { type: Number, default: 180 },
-  bookedSeats: [{ type: String }] // Array of seat numbers like "1A", "1B", etc.
+  arrivalTime: { type: String, required: true }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Flight', flightSchema);
