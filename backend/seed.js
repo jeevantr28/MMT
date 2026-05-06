@@ -70,14 +70,14 @@ const seedFlights = [
 ];
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/mmt_clone')
-.then(async () => {
-  console.log('MongoDB connected for seeding...');
-  await Flight.deleteMany({}); // Clear existing flights
-  await Flight.insertMany(seedFlights);
-  console.log('Dummy flights seeded successfully!');
-  mongoose.connection.close();
-})
-.catch(err => {
-  console.error('Error seeding flights:', err);
-  process.exit(1);
-});
+  .then(async () => {
+    console.log('MongoDB connected for seeding...');
+    await Flight.deleteMany({}); // Clear existing flights
+    await Flight.insertMany(seedFlights);
+    console.log('Dummy flights seeded successfully!');
+    mongoose.connection.close();
+  })
+  .catch(err => {
+    console.error('Error seeding flights:', err);
+    process.exit(1);
+  });

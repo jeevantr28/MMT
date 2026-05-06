@@ -20,9 +20,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/flights" element={<Flights />} />
-            <Route 
-              path="/book/:flightId" 
-              element={isAuthenticated ? <Booking /> : <Navigate to="/login" />} 
+            <Route
+              path="/book/:flightId"
+              element={isAuthenticated ? <Booking /> : <Navigate to="/login" />}
             />
           </Routes>
         </main>
